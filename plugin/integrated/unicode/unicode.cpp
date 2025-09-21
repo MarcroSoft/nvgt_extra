@@ -235,7 +235,7 @@ shared->script_engine->RegisterObjectMethod("string", "bool is_nfc() const", asF
 shared->script_engine->RegisterObjectMethod("string", "bool is_nfd() const", asFUNCTION(is_nfd), asCALL_CDECL_OBJFIRST);
 shared->script_engine->RegisterObjectMethod("string", "bool is_nfkc() const", asFUNCTION(is_nfkc), asCALL_CDECL_OBJFIRST);
 shared->script_engine->RegisterObjectMethod("string", "bool is_nfkd() const", asFUNCTION(is_nfkd), asCALL_CDECL_OBJFIRST);
-shared->script_engine->RegisterObjectMethod("string", "general_category general_category() const", asFUNCTION(get_general_category), asCALL_CDECL_OBJFIRST);
+shared->script_engine->RegisterObjectMethod("string", "unicode::general_category general_category() const", asFUNCTION(get_general_category), asCALL_CDECL_OBJFIRST);
 shared->script_engine->RegisterObjectMethod("string", "bool is_alphabetic() const", asFUNCTION(is_alphabetic), asCALL_CDECL_OBJFIRST);
 shared->script_engine->RegisterObjectMethod("string", "bool is_numeric() const", asFUNCTION(is_numeric), asCALL_CDECL_OBJFIRST);
 shared->script_engine->RegisterObjectMethod("string", "bool is_alphanumeric() const", asFUNCTION(is_alphanumeric), asCALL_CDECL_OBJFIRST);
