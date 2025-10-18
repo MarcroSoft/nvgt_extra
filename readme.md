@@ -1,5 +1,5 @@
 # Extra resources for NVGT
-This is a secondary repository for [NVGT][https://nvgt.gg] intended as an optional submodule to the project's [main repository](https://github.com/samtupy/nvgt), containing various example games, plugins, tests, and other resources that might not fit very well into the main repository.
+This is a secondary repository for [NVGT][https://nvgt.dev] intended as an optional submodule to the project's [main repository](https://github.com/samtupy/nvgt), containing various example games, plugins, tests, and other resources that might not fit very well into the main repository.
 
 NVGT's main repository is rather small and contains what we would consider to be the core of the project. That repository contains the documentation, source code, all small tests and even a few sample plugins. It generally contains very few binary artifacts, and thus is pretty light weight and contains just the nessessities required for someone to get up and running with NVGT. Someone does not need to install that many dependencies to build the contents of this repository, and thus any plugins that require extra libraries to function typically do not belong there.
 
