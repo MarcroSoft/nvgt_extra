@@ -2,7 +2,7 @@ Import("env")
 
 scriptarray = env.SharedObject("scriptarray", "#ASAddon/plugin/scriptarray.cpp", LIBPATH = [])
 winlibs = ""
-if env["PLATFORM"] == "win32":
+if env["NVGT_TARGET"] == "windows":
 	winlibs = "kernel32 user32 crypt32 advapi32 iphlpapi netapi32 uuid wldap32 ws2_32 normaliz"
 if ARGUMENTS.get("no_shared_plugins", "0") == "0":
 	env.SharedLibrary("#release/lib/nvgt_curl", ["internet.cpp", scriptarray], LIBS = Split(winlibs) + ["curl", "z", "crypto", "ssl"], CPPDEFINES = ["CURL_STATICLIB"], FRAMEWORKS = ["Foundation", "SystemConfiguration"])
