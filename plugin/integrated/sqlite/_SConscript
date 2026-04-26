@@ -16,7 +16,7 @@ if ARGUMENTS.get("no_shared_plugins", "0") == "0":
 	if avxenv["NVGT_TARGET"] == "windows":
 		avxenv.SharedLibrary("#release/lib/nvgt_sqlite", ["nvgt_sqlite.cpp", scriptarray, scriptdictionary, sqlite_addons], LIBS = ["PocoFoundation", "pcre2-8"])
 	else:
-		avxenv.SharedLibrary("#release/lib/nvgt_sqlite", ["nvgt_sqlite.cpp", scriptarray, scriptdictionary, sqlite_addons], LIBS = ["PocoFoundation", ":libpcre2-8.a"], LINKFLAGS = ["-Wl,--no-undefined" if env["NVGT_TARGET"] == "darwin" else ""])
+		avxenv.SharedLibrary("#release/lib/nvgt_sqlite", ["nvgt_sqlite.cpp", scriptarray, scriptdictionary, sqlite_addons], LIBS = ["PocoFoundation", ":libpcre2-8.a"], LINKFLAGS = ["-Wl,--no-undefined" if env["NVGT_TARGET"] != "darwin" else ""])
 static = avxenv.Object("nvgt_sqlite_static", "nvgt_sqlite.cpp", CPPDEFINES = env["CPPDEFINES"] + [("NVGT_PLUGIN_STATIC", "nvgt_sqlite")])
 static = avxenv.StaticLibrary("#build/lib/nvgt_sqlite", [static, sqlite_addons])
 Return("static")
