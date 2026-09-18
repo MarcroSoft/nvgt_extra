@@ -11,7 +11,7 @@ elif avxenv["NVGT_TARGET"] != "android":
 	avxenv.Append(CCFLAGS=["-mavx", "-maes"])
 if avxenv["NVGT_TARGET"] == "macos":
 	avxenv.Append(FRAMEWORKS=["Security", "Foundation"])
-sqlite_addons = avxenv.SharedObject(["#extra/plugin/dep/sqlite3/dbdump.c", "#extra/plugin/dep/sqlite3/eval.c", "#extra/plugin/dep/sqlite3/spellfix.c", "pack.cpp", "#extra/plugin/dep/sqlite3/sqlite3.c"], CPPDEFINES = env["CPPDEFINES"] + defines)
+sqlite_addons = avxenv.SharedObject(["#extra/plugin/dep/sqlite3/dbdump.c", "#extra/plugin/dep/sqlite3/eval.c", "#extra/plugin/dep/sqlite3/spellfix.c", "pack.cpp", "#extra/plugin/dep/sqlite3/sqlite3.c"], CPPDEFINES = list(env["CPPDEFINES"]) + defines)
 if ARGUMENTS.get("no_shared_plugins", "0") == "0":
 	if avxenv["NVGT_TARGET"] == "windows":
 		avxenv.SharedLibrary(avxenv["PLUGIN_DEST_DIR"] + "/nvgt_sqlite", ["nvgt_sqlite.cpp", scriptarray, scriptdictionary, sqlite_addons], LIBS = ["PocoFoundation", "pcre2-8"])
@@ -19,6 +19,6 @@ if ARGUMENTS.get("no_shared_plugins", "0") == "0":
 		avxenv.SharedLibrary(avxenv["PLUGIN_DEST_DIR"] + "/nvgt_sqlite", ["nvgt_sqlite.cpp", scriptarray, scriptdictionary, sqlite_addons], LIBS = ["PocoFoundation", "pcre2-8"], LINKFLAGS = ["-Wl,-undefined,error"])
 	else:
 		avxenv.SharedLibrary(avxenv["PLUGIN_DEST_DIR"] + "/nvgt_sqlite", ["nvgt_sqlite.cpp", scriptarray, scriptdictionary, sqlite_addons], LIBS = ["PocoFoundation", ":libpcre2-8.a"], LINKFLAGS = ["-Wl,--no-undefined"])
-static = avxenv.Object("nvgt_sqlite_static", "nvgt_sqlite.cpp", CPPDEFINES = env["CPPDEFINES"] + [("NVGT_PLUGIN_STATIC", "nvgt_sqlite")])
+static = avxenv.Object("nvgt_sqlite_static", "nvgt_sqlite.cpp", CPPDEFINES = list(env["CPPDEFINES"]) + [("NVGT_PLUGIN_STATIC", "nvgt_sqlite")])
 static = avxenv.StaticLibrary("#build/lib/nvgt_sqlite", [static, sqlite_addons])
 Return("static")
